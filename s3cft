@@ -4,7 +4,7 @@
             "Type": "AWS::S3::Bucket",
             "DeletionPolicy": "Retain",
             "Properties": {
-                "BucketName": "cf-templates-11j1yil3yjruy-us-east-1"
+                "BucketName": "datatestsssssdata"
             }
         }
     }
