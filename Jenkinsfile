@@ -6,7 +6,7 @@ pipeline {
             steps {
                 script {
                     echo 'Hello World'
-                    sh 'arn:aws:cloudformation:us-east-1:302019044897:stack/myfirst-web-application/7833a250-6404-11ed-9cf4-122daf2fc495'
+                    sh 'arn:aws:iam::302019044897:role/service-role/myfirsttest-role-tldm2gm4'
                 }
             }
         }
