@@ -1,22 +1,22 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Description: Lambda function with cfn-response.
+Description: Lambda function ListBucketsCommand.
 Resources:
   primer:
     Type: AWS::Lambda::Function
     Properties:
-      Runtime: nodejs16.x
-      Role: arn:aws:iam::890936820974:role/lambdas3
+      Runtime: nodejs18.x
+      Role: arn:aws:iam::123456789012:role/lambda-role
       Handler: index.handler
       Code:
         ZipFile: |
-          exports.handler = async (event) => {
-              // TODO implement
-              const response = {
-                  statusCode: 200,
-                  body: JSON.stringify(' Cloud formation template to  deploy a lambda function!'),
-              };
-              return response;
+          const { S3Client, ListBucketsCommand } = require("@aws-sdk/client-s3");
+          const s3 = new S3Client({ region: "us-east-1" }); // replace "us-east-1" with your AWS region
+
+          exports.handler = async function(event) {
+            const command = new ListBucketsCommand({});
+            const response = await s3.send(command);
+            return response.Buckets;
           };
-      Description: Invoke a function during stack creation.
+      Description: List Amazon S3 buckets in us-east-1.
       TracingConfig:
         Mode: Active
